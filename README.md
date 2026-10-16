@@ -243,7 +243,7 @@ Contributions are welcome! To propose a new formatter, linter, or hosted platfor
 
 1. 🍴 **Fork the repository**.
 2. ✍️ **Add or edit entries** in `README.md` maintaining alphabetical or star-based order.
-3. 📋 **Include required metadata**: Name, official link, GitHub Stars_Badge (if open source), concise 1–2 sentence description, and pricing/free-tier specifics.
+3. 📋 **Include required metadata**: Name, official link, GitHub_Stars_Badge (if open source), concise 1–2 sentence description, and pricing/free-tier specifics.
 4. 🚀 **Submit a Pull Request** with a clear explanation of the addition.
 
 ---
