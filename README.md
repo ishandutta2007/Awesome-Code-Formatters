@@ -30,6 +30,7 @@ Contributions welcome! Open a PR to add/update entries. Keep descriptions factua
 
 ## Table of Contents
 
+- [Sector Overview & Market Dynamics](#sector-overview--market-dynamics)
 - [SaaS/Hosted Platforms](#saas-hosted-platforms)
 
 - [Open-Source GitHub Projects](#open-source-github-projects)
@@ -40,37 +41,21 @@ Contributions welcome! Open a PR to add/update entries. Keep descriptions factua
 
 
 
+## Sector Overview & Market Dynamics
+
+The global static code analysis and automated code quality market is estimated at approximately $1.1B to $1.8B (expanding past $3.5B by the early 2030s at an ~11–13% CAGR). The sector is **moderately consolidated at the enterprise tier**—dominated by top-tier static analysis and DevSecOps incumbents like SonarSource, JetBrains, and Synopsys—while surrounded by a **highly fragmented fringe** of niche developer startups and open-source linters.
+
+
+
 ## SaaS/Hosted Platforms
 
-
-
-- **[SonarQube](https://www.sonarsource.com/products/sonarqube/)**
-
-  **Code quality and security platform** with **30+ language support** . Features **static analysis**, **security vulnerability detection**, **code smell identification**, and **coverage reporting** . **SonarCloud** provides managed hosting for open-source projects . **The enterprise standard** for continuous code quality inspection.
-
-
-
-- **[Codacy](https://www.codacy.com/)**
-
-  **Automated code review platform** with **40+ language support** . Features **static analysis**, **code complexity metrics**, **coverage tracking**, and **pull request quality gates** . **The most accessible commercial code quality platform**.
-
-
-
-- **[CodeClimate](https://codeclimate.com/)**
-
-  **Engineering intelligence platform** (Velocity) providing **cycle time**, **review time**, **deployment frequency**, and **throughput** metrics  . Integrates with **GitHub, Jira**, and other engineering tools to surface workflow trends  . **The most focused on engineering velocity** rather than code formatting alone.
-
-
-
-- **[DeepSource](https://deepsource.com/)**
-
-  **Automated code review platform** with **static analysis**, **security scanning**, and **coverage tracking** . **The most developer-friendly commercial option** with fast onboarding.
-
-
-
-- **[Qodana (JetBrains)](https://www.jetbrains.com/qodana/)**
-
-  **Smart code quality platform by JetBrains** best suited for working in teams  . **Analyzes code in 60+ languages** including Java, JavaScript, TypeScript, PHP, Kotlin, Python, Go, C#, C/C++, and Ruby  . Provides **detailed problem descriptions, code fragments, and recommendations**  . **Enforces coding standards via quality gates**—decide how many problems trigger a build failure  . **Qodana Cloud** accumulates reports for team-wide progress tracking  .
+| Platform | Company Valuation / Revenue | Pricing (Paid Starting Tier) | Free Tier Limits | Key Highlights |
+| :--- | :--- | :--- | :--- | :--- |
+| **[SonarQube](https://www.sonarsource.com/products/sonarqube/)** (SonarSource) | $4.7B valuation (~$130M–$200M ARR) | Starts at **$32/month** (Team plan, covers up to 100k LOC) | **Free forever**: Unlimited LOC for public/open-source repos; up to 50k LOC and 5 members for private repos | Enterprise standard for continuous code quality inspection across 30+ languages, static analysis, vulnerability detection, and coverage reporting. |
+| **[Qodana](https://www.jetbrains.com/qodana/)** (JetBrains) | Bootstrapped (~$700M+ annual revenue) | Starts at **$6/contributor/month** (Ultimate plan, 3 active contributors minimum) | **Free forever (Community Edition)**: Unlimited lines of analyzed code for JVM, Python, and .NET (excludes web languages like JS/TS, baseline checks, and quality gates) | JetBrains' native code quality engine bringing IDE-grade smart inspections, quality gates, and multi-language analysis directly into CI/CD. |
+| **[CodeClimate](https://codeclimate.com/)** (Qlty Software / Velocity) | ~$50M Series C growth equity funding | Starts at **$20/contributor/month** (Pro plan for Qlty Quality) | **Free forever**: Unlimited public & private repos; capped at 1,000 analysis minutes/month and 100 AI autofixes/month | Engineering intelligence and quality platform covering PR health, technical debt hotspots, and cycle-time velocity metrics. |
+| **[Codacy](https://www.codacy.com/)** | ~$29.9M total funding ($15M Series B) | Starts at **$18/user/month** (billed annually, Pro plan) | **Free forever** for open-source/public repos; includes a **14-day free trial** of full Pro tier with unlimited LOC and PR gates | Accessible automated code review supporting 40+ languages, static analysis, PR quality gates, and code complexity tracking. |
+| **[DeepSource](https://deepsource.com/)** | ~$7.7M total funding ($2.6M Seed) | Starts at **$24/user/month** (billed annually, Team plan) | **Free forever**: Up to 3 team members and 3 private repositories (unlimited public repos; includes 14-day free trial of Team tier) | Developer-friendly continuous static analysis platform with automated code formatting, autofocus on zero false positives, and autofix runs. |
 
 
 
