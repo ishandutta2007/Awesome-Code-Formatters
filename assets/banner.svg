@@ -1,175 +1,215 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" width="100%" height="360" style="background:#090d16; border-radius:16px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; overflow:hidden;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" width="1200" height="360">
   <defs>
     <!-- Background Gradients -->
-    <linearGradient id="bgGlow" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0e1726" />
-      <stop offset="50%" stop-color="#0b101b" />
-      <stop offset="100%" stop-color="#070a10" />
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b0f19" />
+      <stop offset="50%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#070a12" />
     </linearGradient>
 
     <linearGradient id="titleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#38bdf8" />
-      <stop offset="50%" stop-color="#818cf8" />
+      <stop offset="45%" stop-color="#818cf8" />
       <stop offset="100%" stop-color="#c084fc" />
     </linearGradient>
 
-    <linearGradient id="accentCyan" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#06b6d4" />
-      <stop offset="100%" stop-color="#3b82f6" />
+    <linearGradient id="scannerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0" />
+      <stop offset="30%" stop-color="#38bdf8" stop-opacity="0.8" />
+      <stop offset="50%" stop-color="#c084fc" stop-opacity="1" />
+      <stop offset="70%" stop-color="#38bdf8" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0" />
     </linearGradient>
 
-    <linearGradient id="accentViolet" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#8b5cf6" />
-      <stop offset="100%" stop-color="#ec4899" />
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.9" />
     </linearGradient>
 
-    <linearGradient id="accentEmerald" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#10b981" />
-      <stop offset="100%" stop-color="#14b8a6" />
-    </linearGradient>
-
-    <!-- Grid Pattern -->
-    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
-      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#1e293b" stroke-width="0.8" opacity="0.45" />
-      <circle cx="0" cy="0" r="1.2" fill="#334155" opacity="0.6"/>
+    <!-- Subtle Dot Grid Pattern -->
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#334155" opacity="0.35" />
     </pattern>
 
-    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="8" result="blur" />
-      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    <!-- Gaussian Glow Filters for dynamic elements -->
+    <filter id="glowCyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="45" result="blur" />
+    </filter>
+
+    <filter id="glowPurple" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="55" result="blur" />
     </filter>
   </defs>
 
   <style>
-    /* Continuous background pulse & scanning bar animation */
-    @keyframes scanline {
-      0% { transform: translateY(0px); opacity: 0; }
-      15% { opacity: 0.6; }
-      85% { opacity: 0.6; }
-      100% { transform: translateY(360px); opacity: 0; }
+    /* GitHub-safe animations */
+    @keyframes pulseOrb1 {
+      0%, 100% { transform: translate(0px, 0px) scale(1); opacity: 0.28; }
+      50% { transform: translate(30px, 15px) scale(1.15); opacity: 0.45; }
     }
-    @keyframes pulseGlow {
-      0%, 100% { opacity: 0.25; transform: scale(1); }
-      50% { opacity: 0.45; transform: scale(1.08); }
+    @keyframes pulseOrb2 {
+      0%, 100% { transform: translate(0px, 0px) scale(1); opacity: 0.24; }
+      50% { transform: translate(-25px, -20px) scale(1.2); opacity: 0.42; }
     }
-    @keyframes flowPill1 {
-      0%, 100% { transform: translateX(0px); }
-      50% { transform: translateX(12px); }
+    @keyframes scanSweep {
+      0% { transform: translateY(-5px); opacity: 0; }
+      20% { opacity: 0.75; }
+      80% { opacity: 0.75; }
+      100% { transform: translateY(365px); opacity: 0; }
     }
-    @keyframes flowPill2 {
-      0%, 100% { transform: translateX(0px); }
-      50% { transform: translateX(-12px); }
-    }
-    @keyframes codeStream {
-      0% { stroke-dashoffset: 600; }
+    @keyframes streamFlow {
+      0% { stroke-dashoffset: 400; }
       100% { stroke-dashoffset: 0; }
     }
-    .scanner {
-      animation: scanline 7s ease-in-out infinite;
+    @keyframes floatPillLeft {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-7px); }
     }
-    .orb1 {
-      animation: pulseGlow 6s ease-in-out infinite;
-      transform-origin: 200px 80px;
+    @keyframes floatPillRight {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(7px); }
     }
-    .orb2 {
-      animation: pulseGlow 8s ease-in-out infinite 1s;
-      transform-origin: 1000px 280px;
+
+    .orb-cyan {
+      animation: pulseOrb1 7s ease-in-out infinite;
     }
-    .pill-anim-1 {
-      animation: flowPill1 4s ease-in-out infinite;
+    .orb-purple {
+      animation: pulseOrb2 9s ease-in-out infinite;
     }
-    .pill-anim-2 {
-      animation: flowPill2 4.5s ease-in-out infinite;
+    .scanner-line {
+      animation: scanSweep 6s ease-in-out infinite;
     }
-    .stream-line {
-      stroke-dasharray: 60, 20;
-      animation: codeStream 12s linear infinite;
+    .stream-anim {
+      stroke-dasharray: 40, 16;
+      animation: streamFlow 10s linear infinite;
+    }
+    .left-pills {
+      animation: floatPillLeft 4.5s ease-in-out infinite;
+    }
+    .right-pills {
+      animation: floatPillRight 5s ease-in-out infinite;
+    }
+
+    /* Crisp Typography */
+    .title-text {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-weight: 800;
+      font-size: 42px;
+      letter-spacing: -0.5px;
+    }
+    .subtitle-text {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-weight: 500;
+      font-size: 16px;
+      fill: #cbd5e1;
+    }
+    .desc-text {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-weight: 400;
+      font-size: 13.5px;
+      fill: #94a3b8;
+    }
+    .badge-label {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-weight: 600;
+      font-size: 12.5px;
+      fill: #f1f5f9;
+    }
+    .metric-label {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+    }
+    .tag-label {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 2px;
+      fill: #38bdf8;
     }
   </style>
 
-  <!-- Deep Canvas Background -->
-  <rect width="1200" height="360" fill="url(#bgGlow)" />
-  <rect width="1200" height="360" fill="url(#grid)" />
+  <!-- Deep Canvas Frame -->
+  <rect width="1200" height="360" rx="16" fill="url(#bgGrad)" />
+  <rect width="1200" height="360" rx="16" fill="url(#grid)" />
+  <rect width="1200" height="360" rx="16" fill="none" stroke="#1e293b" stroke-width="1.5" />
 
-  <!-- Dynamic Glowing Orbs in Background -->
-  <circle class="orb1" cx="220" cy="90" r="140" fill="#38bdf8" opacity="0.25" filter="url(#glow)" />
-  <circle class="orb2" cx="980" cy="270" r="160" fill="#a855f7" opacity="0.22" filter="url(#glow)" />
-
-  <!-- Dynamic Animated Scanline Effect in Background -->
-  <rect class="scanner" x="0" y="0" width="1200" height="2" fill="url(#titleGrad)" opacity="0.4" />
-
-  <!-- Stylized Decorative Code Syntax / Connection Rails (Background) -->
-  <g opacity="0.22">
-    <path class="stream-line" d="M 60 70 L 400 70 L 460 130 L 1140 130" fill="none" stroke="#38bdf8" stroke-width="1.5" />
-    <path class="stream-line" d="M 60 290 L 740 290 L 800 230 L 1140 230" fill="none" stroke="#c084fc" stroke-width="1.5" />
+  <!-- Dynamic Animated Glow Orbs in Background -->
+  <g>
+    <circle class="orb-cyan" cx="190" cy="110" r="140" fill="#0284c7" filter="url(#glowCyan)" />
+    <circle class="orb-purple" cx="1010" cy="240" r="160" fill="#7c3aed" filter="url(#glowPurple)" />
   </g>
 
-  <!-- Dynamic Language & Tool Badges / Visual Pills (Crisp Foreground Sides) -->
-  <!-- Left Side Badges -->
-  <g class="pill-anim-1" transform="translate(60, 115)">
-    <!-- Pill 1: Rust/Biome -->
-    <rect x="0" y="0" width="130" height="32" rx="16" fill="#1e293b" stroke="#38bdf8" stroke-width="1.2" opacity="0.85"/>
-    <circle cx="16" cy="16" r="4.5" fill="#38bdf8" />
-    <text x="30" y="21" fill="#f8fafc" font-size="12" font-weight="600" letter-spacing="0.5">⚡ Biome</text>
+  <!-- Dynamic Decorative Stream Lines (Background) -->
+  <g opacity="0.28">
+    <path class="stream-anim" d="M 60 75 L 360 75 L 430 135 L 1140 135" fill="none" stroke="#38bdf8" stroke-width="1.5" />
+    <path class="stream-anim" d="M 60 285 L 750 285 L 820 225 L 1140 225" fill="none" stroke="#c084fc" stroke-width="1.5" />
+  </g>
+
+  <!-- Dynamic Scanning Beam (Sweeping vertically across background) -->
+  <rect class="scanner-line" x="0" y="0" width="1200" height="2" fill="url(#scannerGrad)" />
+
+  <!-- LEFT SIDE FLOATING TOOL PILLS -->
+  <g class="left-pills" transform="translate(60, 110)">
+    <!-- Pill 1: Biome -->
+    <rect x="0" y="0" width="135" height="34" rx="17" fill="url(#cardGrad)" stroke="#38bdf8" stroke-width="1.2" />
+    <circle cx="17" cy="17" r="4.5" fill="#38bdf8" />
+    <text x="32" y="22" class="badge-label">⚡ Biome</text>
 
     <!-- Pill 2: Ruff -->
-    <rect x="0" y="44" width="120" height="32" rx="16" fill="#1e293b" stroke="#f43f5e" stroke-width="1.2" opacity="0.85"/>
-    <circle cx="16" cy="60" r="4.5" fill="#f43f5e" />
-    <text x="30" y="65" fill="#f8fafc" font-size="12" font-weight="600" letter-spacing="0.5">🐍 Ruff</text>
+    <rect x="0" y="46" width="125" height="34" rx="17" fill="url(#cardGrad)" stroke="#f43f5e" stroke-width="1.2" />
+    <circle cx="17" cy="63" r="4.5" fill="#f43f5e" />
+    <text x="32" y="68" class="badge-label">🐍 Ruff</text>
 
     <!-- Pill 3: Prettier -->
-    <rect x="0" y="88" width="135" height="32" rx="16" fill="#1e293b" stroke="#a855f7" stroke-width="1.2" opacity="0.85"/>
-    <circle cx="16" cy="104" r="4.5" fill="#a855f7" />
-    <text x="30" y="109" fill="#f8fafc" font-size="12" font-weight="600" letter-spacing="0.5">✨ Prettier</text>
+    <rect x="0" y="92" width="140" height="34" rx="17" fill="url(#cardGrad)" stroke="#a855f7" stroke-width="1.2" />
+    <circle cx="17" cy="109" r="4.5" fill="#a855f7" />
+    <text x="32" y="114" class="badge-label">✨ Prettier</text>
   </g>
 
-  <!-- Right Side Badges -->
-  <g class="pill-anim-2" transform="translate(1005, 115)">
+  <!-- RIGHT SIDE FLOATING TOOL PILLS -->
+  <g class="right-pills" transform="translate(1000, 110)">
     <!-- Pill 4: Black -->
-    <rect x="0" y="0" width="135" height="32" rx="16" fill="#1e293b" stroke="#10b981" stroke-width="1.2" opacity="0.85"/>
-    <circle cx="16" cy="16" r="4.5" fill="#10b981" />
-    <text x="30" y="21" fill="#f8fafc" font-size="12" font-weight="600" letter-spacing="0.5">🖤 Black</text>
+    <rect x="0" y="0" width="140" height="34" rx="17" fill="url(#cardGrad)" stroke="#10b981" stroke-width="1.2" />
+    <circle cx="17" cy="17" r="4.5" fill="#10b981" />
+    <text x="32" y="22" class="badge-label">🖤 Black</text>
 
     <!-- Pill 5: dprint -->
-    <rect x="15" y="44" width="120" height="32" rx="16" fill="#1e293b" stroke="#eab308" stroke-width="1.2" opacity="0.85"/>
-    <circle cx="31" cy="60" r="4.5" fill="#eab308" />
-    <text x="45" y="65" fill="#f8fafc" font-size="12" font-weight="600" letter-spacing="0.5">📦 dprint</text>
+    <rect x="15" y="46" width="125" height="34" rx="17" fill="url(#cardGrad)" stroke="#eab308" stroke-width="1.2" />
+    <circle cx="32" cy="63" r="4.5" fill="#eab308" />
+    <text x="47" y="68" class="badge-label">📦 dprint</text>
 
     <!-- Pill 6: ESLint -->
-    <rect x="0" y="88" width="135" height="32" rx="16" fill="#1e293b" stroke="#6366f1" stroke-width="1.2" opacity="0.85"/>
-    <circle cx="16" cy="104" r="4.5" fill="#6366f1" />
-    <text x="30" y="109" fill="#f8fafc" font-size="12" font-weight="600" letter-spacing="0.5">🛡️ ESLint</text>
+    <rect x="0" y="92" width="140" height="34" rx="17" fill="url(#cardGrad)" stroke="#6366f1" stroke-width="1.2" />
+    <circle cx="17" cy="109" r="4.5" fill="#6366f1" />
+    <text x="32" y="114" class="badge-label">🛡️ ESLint</text>
   </g>
 
-  <!-- FOREGROUND HERO CONTENT (Unobscured, crisp, clean typography) -->
+  <!-- FOREGROUND HERO CONTENT (Guaranteed never covered by dynamic elements) -->
   <g text-anchor="middle">
-    <!-- Super Title / Tag -->
-    <rect x="495" y="44" width="210" height="28" rx="14" fill="#1e293b" stroke="#334155" stroke-width="1.2" />
-    <text x="600" y="63" fill="#94a3b8" font-size="11.5" font-weight="700" letter-spacing="2">⚡ PRODUCTION TOOLCHAINS</text>
+    <!-- Super Title / Category Tag -->
+    <rect x="480" y="44" width="240" height="28" rx="14" fill="#0f172a" stroke="#334155" stroke-width="1.2" />
+    <text x="600" y="63" class="tag-label">PRODUCTION TOOLCHAINS</text>
 
     <!-- Main Title -->
-    <text x="600" y="135" fill="url(#titleGrad)" font-size="44" font-weight="900" letter-spacing="-1">Awesome Code Formatters</text>
+    <text x="600" y="132" class="title-text" fill="url(#titleGrad)">Awesome Code Formatters</text>
 
-    <!-- Subtitle / Value Proposition -->
-    <text x="600" y="178" fill="#e2e8f0" font-size="16" font-weight="500" letter-spacing="0.2">
-      Curated Multi-Language Formatters, Opinionated Toolchains &amp; CI/CD Quality Gates
-    </text>
+    <!-- Subtitle -->
+    <text x="600" y="174" class="subtitle-text">Curated Multi-Language Formatters, Opinionated Toolchains &amp; CI/CD Quality Gates</text>
 
     <!-- Secondary Meta Description -->
-    <text x="600" y="210" fill="#94a3b8" font-size="13.5" font-weight="400">
-      Zero Style Debates • Blazing Fast Rust Engines • Deterministic Code Quality
-    </text>
+    <text x="600" y="206" class="desc-text">Zero Style Debates • Blazing Fast Rust Engines • Deterministic Code Quality</text>
 
-    <!-- Center Interactive Metric Pills -->
-    <g transform="translate(370, 246)">
-      <rect x="0" y="0" width="140" height="36" rx="8" fill="#111827" stroke="#1f2937" stroke-width="1.2"/>
-      <text x="70" y="23" fill="#38bdf8" font-size="12" font-weight="700">🚀 Multi-Language</text>
+    <!-- Center Key Metric Badges -->
+    <g transform="translate(365, 246)">
+      <rect x="0" y="0" width="145" height="36" rx="8" fill="#0f172a" stroke="#1e293b" stroke-width="1.2" />
+      <text x="72.5" y="23" class="metric-label" fill="#38bdf8">⚡ Multi-Language</text>
 
-      <rect x="160" y="0" width="140" height="36" rx="8" fill="#111827" stroke="#1f2937" stroke-width="1.2"/>
-      <text x="230" y="23" fill="#a855f7" font-size="12" font-weight="700">⚙️ CI/CD Enforced</text>
+      <rect x="160" y="0" width="145" height="36" rx="8" fill="#0f172a" stroke="#1e293b" stroke-width="1.2" />
+      <text x="232.5" y="23" class="metric-label" fill="#a855f7">⚙️ CI/CD Enforced</text>
 
-      <rect x="320" y="0" width="140" height="36" rx="8" fill="#111827" stroke="#1f2937" stroke-width="1.2"/>
-      <text x="390" y="23" fill="#10b981" font-size="12" font-weight="700">🔒 Production-Ready</text>
+      <rect x="320" y="0" width="150" height="36" rx="8" fill="#0f172a" stroke="#1e293b" stroke-width="1.2" />
+      <text x="395" y="23" class="metric-label" fill="#10b981">🔒 Production-Ready</text>
     </g>
   </g>
 </svg>
